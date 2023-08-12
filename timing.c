@@ -2,22 +2,25 @@
 #include<time.h>
 
 int main(){
-    int n=0,m=0;
-    time_t begin1 = time(NULL);
-    for(int i=0;i<1000000;i++){
-        n+=1;
+    int n=1,m=1;
+
+    double time_spent1 = 0.0;
+    clock_t begin1 = clock();
+    for(int i=0;i<500000;i++){
+        n=n+1;
         printf("%d",n);
     }
-    time_t end1 = time(NULL);
-    printf("\n");
-    printf("The elapsed time is %d seconds", (end1 - begin1));
+    clock_t end1 = clock();
+    time_spent1 += (double)(end1 - begin1) / CLOCKS_PER_SEC;
+    printf("The elapsed time is %f seconds", time_spent1);
 
-    time_t begin2 = time(NULL);
-    for(int i=0;i<1000000;i++){
-        m+=1;
+    double time_spent2 = 0.0;
+    clock_t begin2 = clock();
+    for(int i=0;i<500000;i++){
+        m=m+1;
     }
-    time_t end2 = time(NULL);
-    printf("\n");
-    printf("The elapsed time is %d seconds", (end2 - begin2));
+    clock_t end2 = clock();
+    time_spent2 += (double)(end2 - begin2) / CLOCKS_PER_SEC;
+    printf("The elapsed time is %0.15f seconds", time_spent1);
     return 0;
 }
